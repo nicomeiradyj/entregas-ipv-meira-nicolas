@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://ccbjbh13gwl8"]
+
+[ext_resource type="PackedScene" uid="uid://bsnptqlln1wif" path="res://AbstractProjectile.tscn" id="1_txje5"]
+[ext_resource type="Texture2D" uid="uid://dy4fne65rpsc2" path="res://assets/textures/proyectile_player.png" id="2_kf17x"]
+
+[node name="Projectile" unique_id=781578077 instance=ExtResource("1_txje5")]
+texture = ExtResource("2_kf17x")

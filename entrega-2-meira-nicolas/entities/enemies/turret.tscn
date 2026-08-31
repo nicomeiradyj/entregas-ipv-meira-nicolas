@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://duu4cog0fb05u"]
+
+[ext_resource type="Texture2D" uid="uid://d2ug0mybgeebc" path="res://assets/textures/turret.png" id="1_sy5ka"]
+
+[node name="Turret" type="Sprite2D" unique_id=2107063740]
+texture = ExtResource("1_sy5ka")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=2146747664]
