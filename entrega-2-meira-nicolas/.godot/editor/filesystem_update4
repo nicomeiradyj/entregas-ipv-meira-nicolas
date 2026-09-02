@@ -1,0 +1,8 @@
+res://default_env.tres
+res://Main.tscn
+res://entities/enemies/turret.gd
+res://entities/enemies/turret.tscn
+res://entities/player/projectile.tscn
+res://abstract_projectile.gd
+res://entities/player/Player.gd
+res://main.gd
