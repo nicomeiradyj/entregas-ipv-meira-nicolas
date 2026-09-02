@@ -16,7 +16,7 @@ func set_starting_values(starting_position:Vector2, direction:Vector2):
 	set_physics_process(true)
 
 func _physics_process(delta):
-	position += direction*70*delta
+	position += direction*260*delta
 	
 
 

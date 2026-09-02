@@ -1,8 +1,16 @@
 [gd_scene format=3 uid="uid://duu4cog0fb05u"]
 
 [ext_resource type="Texture2D" uid="uid://d2ug0mybgeebc" path="res://assets/textures/turret.png" id="1_sy5ka"]
+[ext_resource type="Script" uid="uid://c4oehjjr7pfkj" path="res://entities/enemies/turret.gd" id="2_h6tj7"]
+[ext_resource type="PackedScene" uid="uid://be53m2jwnau77" path="res://entities/enemies/projectile.tscn" id="3_aiw5j"]
 
 [node name="Turret" type="Sprite2D" unique_id=2107063740]
 texture = ExtResource("1_sy5ka")
+script = ExtResource("2_h6tj7")
+projectile_scene = ExtResource("3_aiw5j")
 
-[node name="Marker2D" type="Marker2D" parent="." unique_id=2146747664]
+[node name="FirePosition" type="Marker2D" parent="." unique_id=2146747664]
+
+[node name="Timer" type="Timer" parent="." unique_id=1909185878]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

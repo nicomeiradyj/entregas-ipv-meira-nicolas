@@ -32,3 +32,4 @@ expand_mode = 1
 position = Vector2(409, 422)
 
 [node name="Turret" parent="." unique_id=2107063740 instance=ExtResource("5_fos0i")]
+position = Vector2(661, 171)
