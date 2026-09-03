@@ -1,16 +1,21 @@
-extends Node
+extends Marker2D
 
 @export var turret_scene: PackedScene
 
-func initialize(player: Node2D) -> void:
-	var visible_rect: Rect2 = get_viewport().get_visible_rect()
+func _ready():
+	call_deferred("initialize")
+
+func initialize() -> void:
+	
+	# esto es para la posicion del player y que nio se pongan las torretas arriba 
+	var target: Node2D = get_node("/root/Main/Player")
+	
 	for i in 3:
 		var turret_instance: Node2D = turret_scene.instantiate()
 		
-		var turret_pos: Vector2 = Vector2(
-			randf_range(visible_rect.position.x, visible_rect.end.x),
-			randf_range(visible_rect.position.y + 30, player.global_position.y - 50)
+		var turret_pos: Vector2 = global_position + Vector2(
+			randf_range(-150, 150), 
+			randf_range(-150, 150)
 		)
 		
-		add_child(turret_instance)
-		turret_instance.initialize(turret_pos, player, self)
+		turret_instance.initialize(self, turret_pos, self)

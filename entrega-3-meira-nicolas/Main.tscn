@@ -6,11 +6,15 @@
 [ext_resource type="PackedScene" uid="uid://bscjwoaotlcqc" path="res://entities/enemies/Turret.tscn" id="4"]
 [ext_resource type="Script" uid="uid://ertnqm8kd3lw" path="res://entities/enemies/TurretsSpawner.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://b4667wb7f2iuk" path="res://world/floor.tscn" id="6_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://clgkhks5nljm" path="res://world/cube.tscn" id="7_lgr22"]
 
 [node name="Main" type="Node" unique_id=1412197406]
 script = ExtResource("3")
 
-[node name="Background" type="TextureRect" parent="." unique_id=49386330]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1662757973]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer" unique_id=49386330]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -24,7 +28,8 @@ GRAVITY = 900.0
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=1793492882]
 position = Vector2(1, 1)
 
-[node name="TurretsSpawner" type="Node" parent="." unique_id=1714388729]
+[node name="TurretsSpawner" type="Marker2D" parent="." unique_id=664919146]
+position = Vector2(396, 95)
 script = ExtResource("5")
 turret_scene = ExtResource("4")
 
@@ -39,3 +44,10 @@ position = Vector2(1999, 562)
 
 [node name="Floor4" parent="." unique_id=818139948 instance=ExtResource("6_3dxm6")]
 position = Vector2(2794, 562)
+
+[node name="Cube" parent="." unique_id=2048387859 instance=ExtResource("7_lgr22")]
+position = Vector2(27, 2)
+
+[node name="Cube2" parent="." unique_id=1507535409 instance=ExtResource("7_lgr22")]
+position = Vector2(551, 2)
+mass = 1.0

@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @onready var cannon: Node = $Cannon
 
 @export var ACCELERATION: float = 20.0
