@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://dnc5muoeyfwah"]
+
+[ext_resource type="PackedScene" uid="uid://vqu8xh4hhedx" path="res://entities/player/Player.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://cwss7yl8udbui" path="res://assets/textures/background.png" id="2"]
+[ext_resource type="Script" uid="uid://bkmvt4ya2xfm8" path="res://Main.gd" id="3"]
+[ext_resource type="PackedScene" uid="uid://bscjwoaotlcqc" path="res://entities/enemies/Turret.tscn" id="4"]
+[ext_resource type="Script" uid="uid://ertnqm8kd3lw" path="res://entities/enemies/TurretsSpawner.gd" id="5"]
+[ext_resource type="PackedScene" uid="uid://b4667wb7f2iuk" path="res://world/floor.tscn" id="6_3dxm6"]
+[ext_resource type="PackedScene" uid="uid://clgkhks5nljm" path="res://world/cube.tscn" id="7_lgr22"]
+
+[node name="Main" type="Node" unique_id=1412197406]
+script = ExtResource("3")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1662757973]
+layer = -1
+
+[node name="Background" type="TextureRect" parent="CanvasLayer" unique_id=49386330]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource("2")
+expand_mode = 1
+
+[node name="Player" parent="." unique_id=1413103002 instance=ExtResource("1")]
+position = Vector2(409, 443)
+GRAVITY = 900.0
+
+[node name="Camera2D" type="Camera2D" parent="Player" unique_id=1793492882]
+position = Vector2(1, 1)
+
+[node name="TurretsSpawner" type="Marker2D" parent="." unique_id=664919146]
+position = Vector2(396, 95)
+script = ExtResource("5")
+turret_scene = ExtResource("4")
+
+[node name="Floor" parent="." unique_id=1548136932 instance=ExtResource("6_3dxm6")]
+position = Vector2(400, 562)
+
+[node name="Floor2" parent="." unique_id=1308382474 instance=ExtResource("6_3dxm6")]
+position = Vector2(1197, 562)
+
+[node name="Floor3" parent="." unique_id=1424502178 instance=ExtResource("6_3dxm6")]
+position = Vector2(1999, 562)
+
+[node name="Floor4" parent="." unique_id=818139948 instance=ExtResource("6_3dxm6")]
+position = Vector2(2794, 562)
+
+[node name="Cube" parent="." unique_id=2048387859 instance=ExtResource("7_lgr22")]
+position = Vector2(27, 2)
+
+[node name="Cube2" parent="." unique_id=1507535409 instance=ExtResource("7_lgr22")]
+position = Vector2(551, 2)
+mass = 1.0
+
+[node name="Cube3" parent="." unique_id=556147881 instance=ExtResource("7_lgr22")]
+position = Vector2(847, 2)
+mass = 1.0
+
+[node name="Cube4" parent="." unique_id=147399862 instance=ExtResource("7_lgr22")]
+position = Vector2(1132, 1)
+mass = 1.0
+
+[node name="Cube5" parent="." unique_id=1531780998 instance=ExtResource("7_lgr22")]
+position = Vector2(1070, 1)
+mass = 1.0
+
+[node name="Cube6" parent="." unique_id=1911287732 instance=ExtResource("7_lgr22")]
+position = Vector2(1194, 1)
+mass = 1.0
+
+[node name="Cube7" parent="." unique_id=1361535887 instance=ExtResource("7_lgr22")]
+position = Vector2(1224, -65)
+mass = 1.0
+
+[node name="Cube8" parent="." unique_id=98931930 instance=ExtResource("7_lgr22")]
+position = Vector2(1522, -1)
+mass = 1.0
+
+[node name="Cube9" parent="." unique_id=721374240 instance=ExtResource("7_lgr22")]
+position = Vector2(1586, -1)
+mass = 1.0
+
+[node name="Cube10" parent="." unique_id=2105940034 instance=ExtResource("7_lgr22")]
+position = Vector2(1585, -66)
+mass = 1.0
+
+[node name="Cube11" parent="." unique_id=1542435135 instance=ExtResource("7_lgr22")]
+position = Vector2(1649, -66)
+mass = 1.0
+
+[node name="Cube12" parent="." unique_id=1549945456 instance=ExtResource("7_lgr22")]
+position = Vector2(1649, -130)
+mass = 1.0
+
+[node name="Cube13" parent="." unique_id=173324783 instance=ExtResource("7_lgr22")]
+position = Vector2(1838, 1)
+mass = 1.0
+
+[node name="Cube14" parent="." unique_id=1854717213 instance=ExtResource("7_lgr22")]
+position = Vector2(1838, -63)
+mass = 1.0
