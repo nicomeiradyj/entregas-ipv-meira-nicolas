@@ -51,3 +51,51 @@ position = Vector2(27, 2)
 [node name="Cube2" parent="." unique_id=1507535409 instance=ExtResource("7_lgr22")]
 position = Vector2(551, 2)
 mass = 1.0
+
+[node name="Cube3" parent="." unique_id=556147881 instance=ExtResource("7_lgr22")]
+position = Vector2(847, 2)
+mass = 1.0
+
+[node name="Cube4" parent="." unique_id=147399862 instance=ExtResource("7_lgr22")]
+position = Vector2(1132, 1)
+mass = 1.0
+
+[node name="Cube5" parent="." unique_id=1531780998 instance=ExtResource("7_lgr22")]
+position = Vector2(1070, 1)
+mass = 1.0
+
+[node name="Cube6" parent="." unique_id=1911287732 instance=ExtResource("7_lgr22")]
+position = Vector2(1194, 1)
+mass = 1.0
+
+[node name="Cube7" parent="." unique_id=1361535887 instance=ExtResource("7_lgr22")]
+position = Vector2(1224, -65)
+mass = 1.0
+
+[node name="Cube8" parent="." unique_id=98931930 instance=ExtResource("7_lgr22")]
+position = Vector2(1522, -1)
+mass = 1.0
+
+[node name="Cube9" parent="." unique_id=721374240 instance=ExtResource("7_lgr22")]
+position = Vector2(1586, -1)
+mass = 1.0
+
+[node name="Cube10" parent="." unique_id=2105940034 instance=ExtResource("7_lgr22")]
+position = Vector2(1585, -66)
+mass = 1.0
+
+[node name="Cube11" parent="." unique_id=1542435135 instance=ExtResource("7_lgr22")]
+position = Vector2(1649, -66)
+mass = 1.0
+
+[node name="Cube12" parent="." unique_id=1549945456 instance=ExtResource("7_lgr22")]
+position = Vector2(1649, -130)
+mass = 1.0
+
+[node name="Cube13" parent="." unique_id=173324783 instance=ExtResource("7_lgr22")]
+position = Vector2(1838, 1)
+mass = 1.0
+
+[node name="Cube14" parent="." unique_id=1854717213 instance=ExtResource("7_lgr22")]
+position = Vector2(1838, -63)
+mass = 1.0
