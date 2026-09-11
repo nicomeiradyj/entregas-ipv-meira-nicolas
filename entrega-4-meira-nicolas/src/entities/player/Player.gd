@@ -8,6 +8,9 @@ extends CharacterBody2D
 ## ruta estática al mismo.
 ## https://docs.godotengine.org/es/stable/tutorials/scripting/scene_unique_nodes.html
 @onready var weapon: Node = $"%Weapon"
+@onready var body_animations: AnimationPlayer = $BodyAnimations
+@onready var body_pivot: Node2D = $BodyPivot
+
 
 @export var ACCELERATION: float = 3750.0 # Lo multiplicamos por delta, asi que es 60.0 / (1.0 / 60.0)
 @export var H_SPEED_LIMIT: float = 600.0
@@ -31,6 +34,7 @@ func _ready() -> void:
 func initialize(projectile_container: Node = get_parent()) -> void:
 	self.projectile_container = projectile_container
 	weapon.projectile_container = projectile_container
+	body_animations.play("Idle")
 
 
 func _physics_process(delta: float) -> void:
@@ -93,22 +97,38 @@ func _process_input() -> void:
 	h_movement_direction = int(
 		Input.is_action_pressed("move_right")) - int(Input.is_action_pressed("move_left")
 	)
-	
-	weapon.process_input()
 
+	_play_animation("Walk" if h_movement_direction != 0 else "Idle")
+	weapon.process_input()
+	
+	if h_movement_direction != 0:
+		body_pivot.scale.x = 1 - 2 * float(h_movement_direction < 0)
+	
+	if !is_on_floor():
+		_play_animation("Jump")
+	elif h_movement_direction != 0:
+		_play_animation("Walk")
+	else:
+		_play_animation("Idle")	 	
 
 func notify_hit() -> void:
 	print("I'm player and imma die")
+
+	set_physics_process(false)
+	collision_layer = 0
+	
+	_play_animation("Die")
+	
+	await body_animations.animation_finished
+	
 	_remove.call_deferred()
 
-
 func _remove() -> void:
-	set_physics_process(false)
 	hide()
-	collision_layer = 0
 
 
 ## Wrapper sobre el llamado a animación para tener un solo punto de entrada controlable
 ## (en el caso de que necesitemos expandir la lógica o debuggear, por ejemplo)
 func _play_animation(animation: String) -> void:
-	pass ## Acá debe ir la lógica de llamado a animaciones
+	if body_animations.has_animation(animation):
+		body_animations.play(animation)
