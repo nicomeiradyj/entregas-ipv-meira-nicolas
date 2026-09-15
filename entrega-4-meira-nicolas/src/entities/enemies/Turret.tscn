@@ -179,7 +179,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_kdf0b")
 }],
-"loop": 1,
+"loop": 2,
 "name": &"Die",
 "speed": 5.0
 }, {
@@ -222,7 +222,7 @@ position = Vector2(0, -22)
 [node name="Body" type="AnimatedSprite2D" parent="." unique_id=28071258]
 position = Vector2(0, -15)
 sprite_frames = SubResource("SpriteFrames_8w0r3")
-animation = &"Attack"
+animation = &"Die"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1128401104]
 position = Vector2(0, -12.5)

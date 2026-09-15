@@ -1,55 +1,21 @@
 [gd_scene format=3 uid="uid://22mlxu8p1pyp"]
 
 [ext_resource type="PackedScene" uid="uid://cgadr55reetnl" path="res://src/entities/Projectile.tscn" id="1"]
-[ext_resource type="Texture2D" uid="uid://6s4eeg8s67tg" path="res://assets/textures/proyectile_player.png" id="2_uid2m"]
 
-[sub_resource type="Animation" id="Animation_t2gel"]
-resource_name = "fire_loop"
-
-[sub_resource type="Animation" id="Animation_bca4c"]
-resource_name = "fire_start"
-
-[sub_resource type="Animation" id="Animation_epysu"]
-resource_name = "hit"
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"_remove"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dw21e"]
-_data = {
-&"fire_loop": SubResource("Animation_t2gel"),
-&"fire_start": SubResource("Animation_bca4c"),
-&"hit": SubResource("Animation_epysu")
-}
-
-[sub_resource type="CircleShape2D" id="1"]
-radius = 8.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uyr1p"]
+radius = 8.571433
+height = 17.142866
 
 [node name="TurretProjectile" unique_id=440638016 instance=ExtResource("1")]
 VELOCITY = 300.0
 
-[node name="LifetimeTimer" parent="." index="0"]
+[node name="LifetimeTimer" parent="." index="0" unique_id=1164698576]
 wait_time = 3.0
 
-[node name="ProjectileAnimations" parent="." index="1"]
-libraries/ = SubResource("AnimationLibrary_dw21e")
+[node name="Hitbox" parent="." index="1" unique_id=1806049624]
+collision_mask = 0
 
-[node name="Hitbox" parent="." index="2"]
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0" unique_id=1941873363]
-shape = SubResource("1")
-
-[node name="Sprite2D" type="Sprite2D" parent="." index="3" unique_id=1249467469]
-texture = ExtResource("2_uid2m")
+[node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=241531513]
+position = Vector2(-6.8119584e-07, -6.8119584e-07)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("CapsuleShape2D_uyr1p")

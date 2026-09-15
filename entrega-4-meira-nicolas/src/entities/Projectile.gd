@@ -6,8 +6,7 @@ extends Node2D
 
 @onready var lifetime_timer: Timer = $LifetimeTimer
 @onready var hitbox: Area2D = $Hitbox
-@onready var projectile_animations: AnimationPlayer = $ProjectileAnimations
-
+@onready var anim = $AnimatedSprite2D
 @export var VELOCITY: float = 800.0
 
 var direction: Vector2
@@ -30,8 +29,6 @@ func initialize(spawn_position: Vector2, direction: Vector2) -> void:
 	## y volviendo únicos a la escena sus sub-recursos, para que no se mezclen con los otros
 	## hermanos, ya que las animaciones califican como "Resources" y son únicos, y,
 	## por lo tanto, compartidos.
-	projectile_animations.play("fire_start")
-	projectile_animations.queue("fire_loop")
 
 
 func _physics_process(delta: float) -> void:
@@ -45,10 +42,11 @@ func _on_lifetime_timer_timeout() -> void:
 func remove() -> void:
 	hitbox.collision_mask = 0
 	set_physics_process(false)
-	
-	## Acá, como hicimos con Turret y Player, delegamos la "muerte"
-	## a una animación de golpe.
-	projectile_animations.play("hit")
+
+	anim.play("hit")
+	await anim.animation_finished 
+
+	_remove()
 
 
 ## Esta función se llamaría desde "hit" al terminar la animación
@@ -58,6 +56,10 @@ func _remove() -> void:
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
+	if body.name == "Player":
+		return
+		
 	if body.has_method("notify_hit"):
 		body.notify_hit()
-	remove()
+		
+	queue_free()

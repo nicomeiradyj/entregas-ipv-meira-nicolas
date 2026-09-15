@@ -60,14 +60,13 @@ func notify_hit() -> void:
 		return
 	is_dying = true
 	
-	print("I'm turret and imma die")
+	set_physics_process(false)
 	fire_timer.stop()
 	
-	body_anim.play("Die") 
+	body_anim.play("Die")
 	
-	await body_anim.animation_finished
-	
-	_remove.call_deferred()
+	await get_tree().create_timer(2.0).timeout # pàra que se deje de repetir la animacion de die, esta desactivada el bucle pero me sigue fallando
+	queue_free()
 
 func _remove() -> void:
 	get_parent().remove_child(self)
