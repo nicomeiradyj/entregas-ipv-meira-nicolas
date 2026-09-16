@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://dtfuguk7f2oxm"]
+
+[ext_resource type="Texture2D" uid="uid://dkpaxih452knv" path="res://assets/textures/floor.png" id="1"]
+
+[node name="Ramp" type="StaticBody2D" unique_id=1407541422]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=683845159]
+texture = ExtResource("1")
+polygon = PackedVector2Array(0, 0, 128, 0, 64, -128)
+uv = PackedVector2Array(0, 0, 128, 0, 64, -128)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=138384421]
+polygon = PackedVector2Array(0, 0, 64, -128, 128, 0)

@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://22mlxu8p1pyp"]
+
+[ext_resource type="PackedScene" uid="uid://cgadr55reetnl" path="res://src/entities/Projectile.tscn" id="1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uyr1p"]
+radius = 8.571433
+height = 17.142866
+
+[node name="TurretProjectile" unique_id=440638016 instance=ExtResource("1")]
+VELOCITY = 300.0
+is_enemy_bullet = true
+
+[node name="LifetimeTimer" parent="." index="0" unique_id=1164698576]
+wait_time = 3.0
+
+[node name="Hitbox" parent="." index="1" unique_id=1806049624]
+collision_mask = 2
+
+[node name="CollisionShape2D" parent="Hitbox" index="0" unique_id=241531513]
+position = Vector2(-6.8119584e-07, -6.8119584e-07)
+scale = Vector2(0.99999964, 0.99999964)
+shape = SubResource("CapsuleShape2D_uyr1p")
