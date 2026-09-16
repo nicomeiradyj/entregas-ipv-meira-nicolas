@@ -11,6 +11,7 @@ extends Node2D
 
 var direction: Vector2
 
+@export var is_enemy_bullet: bool = false
 
 func initialize(spawn_position: Vector2, direction: Vector2) -> void:
 	self.direction = direction
@@ -56,7 +57,10 @@ func _remove() -> void:
 
 
 func _on_hitbox_body_entered(body: Node2D) -> void:
-	if body.name == "Player":
+	if not is_enemy_bullet and body.name == "Player":
+		return
+		
+	if is_enemy_bullet and "Turret" in body.name:
 		return
 		
 	if body.has_method("notify_hit"):
