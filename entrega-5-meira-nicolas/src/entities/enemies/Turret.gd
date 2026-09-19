@@ -1,10 +1,12 @@
 extends CharacterBody2D
 class_name EnemyTurret
 
+@onready var idle_timer: Timer = $IdleTimer
 @onready var fire_position: Node2D = $FirePosition
 @onready var fire_timer: Timer = $FireTimer
 @onready var raycast: RayCast2D = $RayCast2D
 @onready var body_anim: AnimatedSprite2D = $Body
+@export var wander_radius: Vector2 = Vector2(10.0, 10.0)
 
 @export var projectile_scene: PackedScene
 @export var pathfinding: PathfindAstar
@@ -27,6 +29,7 @@ func _ready() -> void:
 func initialize(turret_pos: Vector2, _projectile_container: Node) -> void:
 	global_position = turret_pos
 	self.projectile_container = _projectile_container
+	idle_timer.start()
 
 
 func fire() -> void:
@@ -50,6 +53,8 @@ func _physics_process(_delta: float) -> void:
 			fire_timer.start()
 	elif !fire_timer.is_stopped():
 		fire_timer.stop()
+	
+	
 	
 	## Damos vuelta el cuerpo para que mire al objetivo en el eje x
 	## y usamos la dirección a la que se casteó el raycast
@@ -119,3 +124,10 @@ func _on_animation_finished() -> void:
 func _play_animation(animation: StringName) -> void:
 	if body_anim.sprite_frames.has_animation(animation):
 		body_anim.play(animation)
+
+
+func _on_idle_timer_timeout() -> void:
+	if pathfinding != null:
+		var random_target: Vector2 = global_position + Vector2(randf_range(-wander_radius.x, wander_radius.x), randf_range(-wander_radius.y, wander_radius.y))	
+		var path: Array = pathfinding.get_simple_path(global_position, random_target)
+		print(path)
