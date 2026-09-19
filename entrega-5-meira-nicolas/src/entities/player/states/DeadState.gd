@@ -1,24 +1,21 @@
 extends PlayerState
 
 
-# Al ser un estado de finalización (es decir, no se sale
-# a ningun otro estado), vamos a procesar todo lo necesario
-# en el enter
 func enter() -> void:
 	character.died.emit()
-	character._play_animation(&"die")
 
+	character.velocity.x = 0
+	character.collision_layer = 0
+	
+	character._play_animation(&"die") 
 
-func exit() -> void:
-	return
-
-
-## Y en update solo manejamos la fricción y movimiento
-## para que no sea un cubo de hielo al morir
 func update(delta: float) -> void:
 	character._handle_deacceleration(delta)
 	character._apply_movement(delta)
 
+
+func exit() -> void:
+	return
 
 func handle_input(_event: InputEvent) -> void:
 	return

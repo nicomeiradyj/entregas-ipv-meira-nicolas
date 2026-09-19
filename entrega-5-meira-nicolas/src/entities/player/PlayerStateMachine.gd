@@ -31,3 +31,9 @@ func notify_hit(amount: int) -> void:
 ## una pool de HP variable.
 func notify_healed(amount: int) -> void:
 	current_state.handle_event(&"healed", amount)
+
+
+func _on_player_hit(amount: int) -> void:
+	
+	if current_state:
+		current_state.handle_event(&"hit", amount)

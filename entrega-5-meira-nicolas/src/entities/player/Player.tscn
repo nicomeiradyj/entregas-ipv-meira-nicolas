@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dvm2rslkg23fn"]
+[gd_scene format=3 uid="uid://dvm2rslkg23fn"]
 
 [ext_resource type="Script" uid="uid://k6lgg24n4g0n" path="res://src/entities/player/Player.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://dhtokuwmgphp" path="res://assets/textures/player/player_sheet.png" id="2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dmes2iqfx7fof" path="res://src/entities/player/Cannon.gd" id="4"]
 [ext_resource type="Script" uid="uid://c4vn5dya7k4fg" path="res://src/entities/player/states/WalkState.gd" id="4_4cd8d"]
 [ext_resource type="PackedScene" uid="uid://b2frruyyyiljc" path="res://src/entities/player/PlayerProjectile.tscn" id="5"]
+[ext_resource type="Script" uid="uid://hplnqx7ii04s" path="res://src/entities/player/states/jumpState.gd" id="5_4cd8d"]
 [ext_resource type="Script" uid="uid://bbu1nfd6mpe2y" path="res://src/entities/player/states/DeadState.gd" id="5_tse5b"]
 [ext_resource type="Texture2D" uid="uid://d2n3umb3swssx" path="res://assets/textures/fx/hits/hits-4/hits-4-6.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://cgtr2eg4ubnea" path="res://assets/textures/fx/hits/hits-4/hits-4-7.png" id="7"]
@@ -300,7 +301,7 @@ _data = {
 &"fire": SubResource("10")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" unique_id=1583357756]
 texture_filter = 1
 collision_layer = 2
 collision_mask = 11
@@ -310,86 +311,88 @@ platform_floor_layers = 4294901761
 script = ExtResource("1")
 push_force = 160.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=119432577]
 position = Vector2(0, -8)
 shape = SubResource("1")
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "start_state", "states_list")]
+[node name="StateMachine" type="Node" parent="." unique_id=1632576710 node_paths=PackedStringArray("character", "start_state", "states_list")]
 script = ExtResource("2_brwq7")
 character = NodePath("..")
 start_state = NodePath("Idle")
-states_list = [NodePath("Idle"), NodePath("Walk"), NodePath("Dead")]
+states_list = [NodePath("Idle"), NodePath("Walk"), NodePath("Dead"), NodePath("Jump")]
 
-[node name="Idle" type="Node" parent="StateMachine"]
+[node name="Idle" type="Node" parent="StateMachine" unique_id=1905956602]
 script = ExtResource("3_dky6r")
 state_id = "idle"
 
-[node name="Walk" type="Node" parent="StateMachine"]
+[node name="Walk" type="Node" parent="StateMachine" unique_id=1468555956]
 script = ExtResource("4_4cd8d")
 state_id = "walk"
 
-[node name="Dead" type="Node" parent="StateMachine"]
+[node name="Jump" type="Node" parent="StateMachine" unique_id=2057648291]
+script = ExtResource("5_4cd8d")
+state_id = "jump"
+
+[node name="Dead" type="Node" parent="StateMachine" unique_id=1086482220]
 script = ExtResource("5_tse5b")
 state_id = "dead"
 
-[node name="BodyAnimations" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_wjetm")
-}
+[node name="BodyAnimations" type="AnimationPlayer" parent="." unique_id=1474538298]
+libraries/ = SubResource("AnimationLibrary_wjetm")
 
-[node name="FloorRaycasts" type="Node2D" parent="."]
+[node name="FloorRaycasts" type="Node2D" parent="." unique_id=914568160]
 
-[node name="RayCast2D1" type="RayCast2D" parent="FloorRaycasts"]
+[node name="RayCast2D1" type="RayCast2D" parent="FloorRaycasts" unique_id=69409785]
 enabled = false
-target_position = Vector2(0, 5)
+target_position = Vector2(0, 1)
 
-[node name="RayCast2D2" type="RayCast2D" parent="FloorRaycasts"]
+[node name="RayCast2D2" type="RayCast2D" parent="FloorRaycasts" unique_id=673581775]
 position = Vector2(-3, 0)
 enabled = false
-target_position = Vector2(0, 5)
+target_position = Vector2(0, 1)
 
-[node name="RayCast2D3" type="RayCast2D" parent="FloorRaycasts"]
+[node name="RayCast2D3" type="RayCast2D" parent="FloorRaycasts" unique_id=1838883097]
 position = Vector2(3, 0)
 enabled = false
-target_position = Vector2(0, 5)
+target_position = Vector2(0, 1)
 
-[node name="BodyPivot" type="Node2D" parent="."]
+[node name="BodyPivot" type="Node2D" parent="." unique_id=1370402798]
 
-[node name="Body" type="Sprite2D" parent="BodyPivot"]
+[node name="Body" type="Sprite2D" parent="BodyPivot" unique_id=1179581177]
 position = Vector2(-2, -11)
 texture = SubResource("2")
 hframes = 9
 vframes = 5
 
-[node name="WeaponPivot" type="Node2D" parent="BodyPivot"]
+[node name="WeaponPivot" type="Node2D" parent="BodyPivot" unique_id=623654148]
 position = Vector2(-4, -5)
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="BodyPivot/WeaponPivot"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="BodyPivot/WeaponPivot" unique_id=1888779083]
 remote_path = NodePath("../../../WeaponContainer")
 update_rotation = false
 update_scale = false
 
-[node name="WeaponContainer" type="Node2D" parent="."]
+[node name="WeaponContainer" type="Node2D" parent="." unique_id=1621797178]
 position = Vector2(-4, -5)
 
-[node name="Weapon" type="Node2D" parent="WeaponContainer"]
+[node name="Weapon" type="Node2D" parent="WeaponContainer" unique_id=497381204]
 unique_name_in_owner = true
 rotation = -1.5708
 script = ExtResource("4")
 projectile_scene = ExtResource("5")
 
-[node name="Sprite2D" type="Sprite2D" parent="WeaponContainer/Weapon"]
+[node name="Sprite2D" type="Sprite2D" parent="WeaponContainer/Weapon" unique_id=850236883]
 rotation = 1.5708
 texture = ExtResource("3")
 
-[node name="WeaponTip" type="Marker2D" parent="WeaponContainer/Weapon"]
+[node name="WeaponTip" type="Marker2D" parent="WeaponContainer/Weapon" unique_id=939623333]
 position = Vector2(13.0635, -0.165404)
 
-[node name="FXAnim" type="AnimationPlayer" parent="WeaponContainer/Weapon"]
-libraries = {
-&"": SubResource("AnimationLibrary_brwq7")
-}
+[node name="FXAnim" type="AnimationPlayer" parent="WeaponContainer/Weapon" unique_id=1735290066]
+libraries/ = SubResource("AnimationLibrary_brwq7")
 
-[node name="FX" type="Sprite2D" parent="WeaponContainer/Weapon"]
+[node name="FX" type="Sprite2D" parent="WeaponContainer/Weapon" unique_id=1980661144]
 position = Vector2(5, 0)
 scale = Vector2(0.5, 0.5)
+
+[connection signal="hit" from="." to="StateMachine" method="_on_player_hit"]
