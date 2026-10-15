@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cg28tsh130r5e"]
+
+[ext_resource type="Script" uid="uid://cjakipi4uujt2" path="res://src/screens/components/action_input.gd" id="1_ha0ah"]
+
+[node name="ActionInput" type="PanelContainer" unique_id=1803677006]
+script = ExtResource("1_ha0ah")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1010075128]
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Panel" type="PanelContainer" parent="HBoxContainer" unique_id=1702554779]
+layout_mode = 2
+
+[node name="Input" type="Label" parent="HBoxContainer/Panel" unique_id=661087511]
+unique_name_in_owner = true
+layout_mode = 2
+text = "A"
+
+[node name="Action" type="Label" parent="HBoxContainer" unique_id=1885649925]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Move Left"
